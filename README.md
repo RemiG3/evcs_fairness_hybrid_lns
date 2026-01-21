@@ -1,7 +1,7 @@
 # Fairness in EV Charging Scheduling (EVCS): Hybrid LNS + MIP
 
 
-# 🚧 COMING SOON...
+# 🚧 Release Coming Soon...
 
 ## Overview
 
@@ -17,6 +17,8 @@ It provides code and experiment assets for a fairness-driven **Electric Vehicle 
   - An **LNS+Gurobi (warm start)** hybrid optimization for refinement.
 
 > **Scope**: Offline EVCS with known arrivals/departures, heterogeneous chargers (multi-level power), grid power bound, PV supply, fairness objectives, and post-hoc fairness metrics.
+
+**Paper**: **[Fairness-based Optimization in Electric Vehicle Charging Scheduling with Heterogeneous Chargers: Comparative Analysis and Solution Approaches](https://dx.doi.org/10.2139/ssrn.5437728)**
 
 ---
 

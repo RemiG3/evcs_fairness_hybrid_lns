@@ -1,0 +1,7 @@
+methods/build/
+results/__pycache__/
+results/.ipynb_checkpoints/
+results/.mplconfig/
+results/*.png
+results/*.zip
+.cursor/

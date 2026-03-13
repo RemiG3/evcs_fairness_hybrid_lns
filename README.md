@@ -1,11 +1,12 @@
 # Fairness in EV Charging Scheduling (EVCS): Hybrid LNS + MIP
 
 
-# 🚧 Release Coming Soon...
+# 🚧 Paper under review...
+
 
 ## Overview
 
-This repository accompanies the paper **“Fairness-based Optimization  in Electric Vehicle Charging Scheduling  with Heterogeneous Chargers: Comparative Analysis and Solution Approaches”**.
+Code and experiments for the paper **“Fairness-based Optimization  in Electric Vehicle Charging Scheduling  with Heterogeneous Chargers: Comparative Analysis and Solution Approaches”**.
 It provides code and experiment assets for a fairness-driven **Electric Vehicle Charging Scheduling (EVCS)** framework that:
 
 - **Formalizes utility and fairness** for EVCS (energy-based utilities and multiple fairness metrics).
@@ -157,7 +158,7 @@ The system supports multiple fairness and efficiency objectives:
 | 0 | **Utilitarian** | Minimize total relative shortfall |
 | 1 | **Quadratic** | Minimize sum of squared shortfalls |
 | 2 | **Proportional Fairness** | Minimize sum of log shortfalls |
-| 3 | **Harmonic Fairness** | Minimize sum of log shortfalls |
+| 3 | **Harmonic Fairness** | Minimize sum of quadratic shortfalls (α=2) |
 | 4 | **Max-Min** | Minimize maximum shortfall |
 | 5 | **RMD Hybrid** | Convex combination of RMD + utility |
 | 6 | **Gini Hybrid** | Convex combination of Gini + utility |
@@ -201,6 +202,15 @@ The executable expects CSV data files in the working directory:
   --objective_index 0 --timeout_lns 300 --timeout_miqp 1800
 ```
 
+**Time-Step and Power Allocation:**
+```bash
+./evcs_optimizer \
+  --scenario 1 --objective_index 0 \
+  --tau 0.1 --power_allocation_heuristic 1
+```
+- `--tau` overrides the time step from the station config file (0,1].
+- `--power_allocation_heuristic` selects 0 (EDF allocation) or 1 (fairness-aware allocation).
+
 ### Complete Parameter Reference
 
 | Parameter | Type | Default | Description |
@@ -211,14 +221,17 @@ The executable expects CSV data files in the working directory:
 | `--station_scenario` | int | [scenario] | Charging station configuration |
 | `--nb_ev` | int | -1 | Number of EVs (overrides scenario file) |
 | `--objective_index` | int | (REQUIRED) | Objective function (see table above) |
-| `--timeout_lns` | double | 300 | LNS time limit (seconds) |
-| `--timeout_mip` | double | 3300 | MIP time limit (seconds) |
+| `--lambda` | double | 0.5 | Weight in [0,1] for convex combination objectives (5-8) |
+| `--timeout_lns` | double | 600 | LNS time limit (seconds) |
+| `--timeout_mip` | double | 3000 | MIP time limit (seconds) |
 | `--timeout_neighbor` | double | 10 | Neighborhood search time limit |
-| `--start_temp` | double | 100.0 | Initial temperature for simulated annealing |
-| `--end_temp` | double | 0.001 | Final temperature |
-| `--max_trials` | int | 10 | Maximum trials per temperature |
-| `--max_generated` | int | 10000 | Maximum solutions generated per trial |
+| `--start_temp` | double | 10.0 | Initial temperature for simulated annealing |
+| `--end_temp` | double | 0.00001 | Final temperature |
+| `--max_trials` | int | 1000 | Maximum trials per temperature |
+| `--max_generated` | int | 100 | Maximum solutions generated per trial |
 | `--seed` | int | -1 | Random seed (-1 for current time) |
+| `--tau` | double | (station config) | Override time step size (0,1] |
+| `--power_allocation_heuristic` | int | 0 | 0 = EDF-based power allocation, 1 = objective-aware power allocation |
 | `--final_output_filename` | string | "complete_solution_[scenario].log" | Final solution output file |
 | `--lns_output_filename` | string | "lns_solution_[scenario].log" | LNS-only solution output file |
 | `--objective_evolution_filepath` | string | - | Objective evolution tracking file |
@@ -287,8 +300,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
 
 
 

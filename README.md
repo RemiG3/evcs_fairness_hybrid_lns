@@ -1,9 +1,5 @@
 # Fairness in EV Charging Scheduling (EVCS): Hybrid LNS + MIP
 
-
-# 🚧 Paper under review...
-
-
 ## Overview
 
 Code and experiments for the paper **“Fairness-based Optimization  in Electric Vehicle Charging Scheduling  with Heterogeneous Chargers: Comparative Analysis and Solution Approaches”**.
@@ -19,7 +15,9 @@ It provides code and experiment assets for a fairness-driven **Electric Vehicle 
 
 > **Scope**: Offline EVCS with known arrivals/departures, heterogeneous chargers (multi-level power), grid power bound, PV supply, fairness objectives, and post-hoc fairness metrics.
 
-**Paper**: **[Fairness-based Optimization in Electric Vehicle Charging Scheduling with Heterogeneous Chargers: Comparative Analysis and Solution Approaches](https://dx.doi.org/10.2139/ssrn.5437728)**
+**Paper**: **[Fairness-based Optimization in Electric Vehicle Charging Scheduling with Heterogeneous Chargers: Comparative Analysis and Solution Approaches](http://doi.org/10.1016/j.trc.2026.105900)**
+
+**Free access to the article (available until September 19)**: **[https://authors.elsevier.com/a/1nXEK,M0mRcoEO](https://authors.elsevier.com/a/1nXEK,M0mRcoEO)**
 
 ---
 
@@ -273,7 +271,15 @@ If you encounter Gurobi-related errors:
 If you use this repo, please cite the paper:
 
 ```bibtex
-
+@article{gauchotte2026fairness,
+title = {Fairness-based optimization in electric vehicle charging scheduling with heterogeneous chargers: Comparative analysis and solution approaches},
+journal = {Transportation Research Part C: Emerging Technologies},
+volume = {192},
+pages = {105900},
+year = {2026},
+issn = {0968-090X},
+author = {R. Gauchotte and A. Oulamara and M. Ghogho and M. Oudani},
+}
 ```
 
 ---
